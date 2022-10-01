@@ -1,0 +1,156 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{
+    int data;
+    struct Node*  next;
+};
+void LinkedListTrasnversal(struct Node* ptr){
+    while (ptr!=NULL){
+        printf("Element %d\n",ptr->data);
+        ptr=ptr->next;
+        
+    }
+}
+struct Node* insertAtBeginning(struct Node *head,int data){
+    struct Node *ptr=(struct Node*)malloc(sizeof(struct Node));
+    ptr->data=data;
+    ptr->next=head;
+    return ptr;
+}
+
+struct Node* insertAtIndex(struct Node* head, int data,int index){
+    struct Node *ptr=(struct Node*)malloc(sizeof(struct Node));
+    struct Node *p=head;
+    int i=0;
+    while(i!=index-1)
+    {
+        p=p->next;
+        i=i+1;
+    }
+    ptr->data=data;
+    ptr->next=p->next;
+    p->next=ptr;
+    return head;
+}
+    
+struct Node* insertAtEnd(struct Node *head,int data){
+    struct Node *ptr=(struct Node*)malloc(sizeof(struct Node));
+    ptr->data=data;
+    struct Node *p=head;
+    
+    while(p->next!=NULL){
+        p=p->next;
+        
+    }
+    p->next=ptr;
+    ptr->next=NULL;
+    return head;
+}
+struct Node *insertAfterPreviousNode(struct Node *head,struct Node *prevnode,int data){
+    struct Node *ptr=(struct Node*)malloc(sizeof(struct Node));
+    ptr->data=data;
+    ptr->next=prevnode->next;
+    prevnode->next=ptr;
+    
+    return head;
+}
+
+
+
+int main() {
+    struct Node* head=NULL;
+    struct Node* fourth=NULL;
+    struct Node* second=NULL;
+    struct Node* third=NULL;
+    head=(struct Node*)malloc(sizeof(struct Node));
+    second=(struct Node*)malloc(sizeof(struct Node));
+    third=(struct Node*)malloc(sizeof(struct Node));
+    fourth=(struct Node*)malloc(sizeof(struct Node));
+    
+    head->data=2;
+    head->next=second; // giving values for 1st Node
+    // values for 2nd node
+    second->data=4;
+    second->next=third;
+    
+    //values for 3rd Node
+    third->data=9;
+    third->next=fourth;
+    
+    //values for 4t node
+    fourth->data=10;
+    fourth->next=NULL;
+    
+    //transversing the linkedlist
+    LinkedListTrasnversal(head);
+    //head=insertAtIndex(head,10,2);
+    
+    
+    //insertion of element at the start
+    head=insertAtBeginning(head,11);
+    printf("New Linkedlist\n");
+    LinkedListTrasnversal(head);
+    printf("adding new element at a particular index \n");
+    head=insertAtIndex(head,10,2);
+    LinkedListTrasnversal(head);
+    
+    head=insertAtEnd(head,25);
+    printf("Inserted Elementg at end \n");
+    LinkedListTrasnversal(head);
+    // insert element after a previous node
+    head=insertAfterPreviousNode(head,third,20);
+    printf("Insert After orevious Node \n");
+    LinkedListTrasnversal(head);
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    return 0;
+}
+
+Output ---
+
+Element 2
+Element 4
+Element 9
+Element 10
+New Linkedlist
+Element 11
+Element 2
+Element 4
+Element 9
+Element 10
+adding new element at a particular index 
+Element 11
+Element 2
+Element 10
+Element 4
+Element 9
+Element 10
+Inserted Elementg at end 
+Element 11
+Element 2
+Element 10
+Element 4
+Element 9
+Element 10
+Element 25
+Insert After orevious Node 
+Element 11
+Element 2
+Element 10
+Element 4
+Element 9
+Element 20
+Element 10
+Element 25
