@@ -1,0 +1,102 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None;
+        
+class linkedlist:
+    def __init__(self):
+        self.head=None
+        
+    def push(self,new_data):
+        new_node=Node(new_data)
+        new_node.next=self.head
+        self.head=new_node
+        
+    #creating a circlular linked list
+    def single_to_circular(self):
+        current=self.head
+        while (current.next!=None):
+            current=current.next
+            
+        current.next=self.head
+        
+    def linkedlisttransversal(self):
+        p=self.head
+        while(p is not None):
+            print(p.data)
+            p=p.next
+            
+    def push_at_Index(self,data,index):
+        new_node=Node(data)
+        p=self.head
+        q=p.next
+        i=0
+        for i in range(index-1):
+            p=p.next
+            q=q.next
+            
+        p.next=new_node
+        new_node.next=q
+        
+    def circular_index_transversal(self):
+        p=self.head
+        print(p.data)
+        while (p.next!=self.head):
+            p=p.next
+            print(p.data)
+     
+# inserting node in the circular linked list at head
+    def circular_head_insertion(self,data):
+        new_node=Node(data)
+        p=self.head
+        while(p.next!=self.head):
+            p=p.next
+        p.next=new_node
+        new_node.next=self.head
+        self.head=new_node
+    def circular_linkedlist_insertion_prev(self,data,item):
+        p=self.head
+        q=p.next
+        new_node=Node(data)
+ 
+        
+        while(p.data!=item) and q.next!=self.head:
+            p=p.next
+            q=q.next
+        if q.next!=self.head:
+            p.next=new_node
+            new_node.next=q
+        
+        
+
+        
+    
+        
+            
+            
+            
+    
+        
+        
+c1=linkedlist()
+c1.push(12)
+c1.push(14)
+c1.push(17)
+#c1.linkedlisttransversal()
+c1.push_at_Index(20,2)
+#c1.single_to_circular()
+#c1.linkedlisttransversal()
+
+
+c1.single_to_circular()
+
+c1.circular_head_insertion(2)
+c1.circular_index_transversal()
+#print("Linked list after Insertion at head node")
+#c1.circular_index_transversal()
+print("Linked list after insertion at a node whose value is given")
+c1.circular_linkedlist_insertion_prev(10,34)
+c1.circular_index_transversal()
+
+
+
