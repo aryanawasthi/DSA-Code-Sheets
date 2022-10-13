@@ -1,0 +1,106 @@
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class Clinkedlist:
+    def __init__(self):
+        self.head=None
+        
+    def push(self,data):
+        new_node=Node(data)
+        new_node.next=self.head
+        self.head=new_node
+        
+    def traversal(self):
+        p=self.head
+        while(p.next!=self.head):
+            print("{} > ".format(p.data),end="")
+            p=p.next
+            
+        print(p.data)
+            
+    def linked_to_circular(self):
+        p=self.head
+        while(p.next!=None):
+            p=p.next
+        p.next=self.head
+        
+    def insert_at_beginning(self,data):
+        new_node=Node(data)
+        p=self.head
+        while(p.next!=self.head):
+            #getting the last element
+            p=p.next
+             
+        p.next=new_node
+        new_node.next=self.head
+        self.head=new_node
+        
+    
+            
+    def insert_at_index(self,index,data):
+        new_node=Node(data)
+        i=0
+        p=self.head
+        q=p.next
+        while(i<index) and q!=self.head:
+            p=p.next
+            q=q.next
+            i=i+1
+        if q!=self.head:
+            p.next=new_node
+            new_node.next=q
+            
+    def insert_at_end(self,data):
+        new_node=Node(data)
+        p=self.head
+        while(p.next!=self.head):
+            p=p.next
+        p.next=new_node
+        new_node.next=self.head
+    
+    # inserting node when the previous node is given
+    def insert_at_given_node(self,prev,data):
+        new_node=Node(data)
+        p=self.head
+        q=p.next
+        # here we get  that our node data not equalt 
+        while(p.data!=prev and q.next!=self.head):
+            p=p.next
+            q=q.next
+        if q!=self.head:
+            p.next=new_node
+            
+        
+        
+c1=Clinkedlist()
+c1.push(3)
+c1.push(4)
+c1.push(5)
+c1.push(8)
+#c1.traversal()
+# converted the list to circular linked list
+c1.linked_to_circular()
+# write a function to insert a node in the beinning of a circular linked list
+c1.insert_at_beginning(10)
+
+# travesal of circular linked list after insertin 10 in beginning
+c1.traversal()
+
+# insertin at a particluar index here we have to insert node(3)
+# at index 2
+c1.insert_at_index(2,1)
+#c1.traversal()
+# insertin node at the end
+print("Insertin Node at the end")
+c1.insert_at_end(10)
+c1.traversal()
+
+
+
+
+
+
