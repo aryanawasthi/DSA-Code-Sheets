@@ -1,0 +1,33 @@
+a="aryan()12334"
+def is_empty(stack):
+    if len(stack)==0:
+        return 1
+    else:
+        return 0
+        
+
+def check_paranthesis(exp):
+    stack=[]
+    for i in range(len(exp)):
+        
+        if exp[i]=="(":
+            stack.append(exp[i])
+        if exp[i]==")":
+            if is_empty(stack):
+                return 0
+            else:
+                stack.pop()
+    if len(stack)!=0:
+        return 0
+    else:
+        return 1
+    
+        
+            
+                
+exp="((2+3*(78+90)+3)))"
+a=check_paranthesis(exp)
+if a==0:
+    print("Paranthesis is not Balanced !")
+else:
+    print("Paranthesisi is balanced !")
