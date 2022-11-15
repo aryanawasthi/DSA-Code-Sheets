@@ -1,0 +1,69 @@
+# defining the pair function as if we have formed the pair
+def isPair(open,close):
+    if open=="(" and close==")":
+        return True
+    elif open=="{" and close=="}":
+        return True
+    elif open=="[" and close=="]":
+        return True
+    
+# creating a list of open and closed brackets
+open_brackets=["(","{","["]
+closed_brackets=[")","}","]"]
+# deining a function which checks the balancing of a paranthesis in string
+def Balanced(A):
+    # defining a empty stack
+    stack=[]
+    # iterating through the stack
+    for i in range(len(A)):
+        # checking if the stack is open list
+        if A[i] in open_brackets:
+            stack.append(A[i])
+        # if it is in closed list
+        elif A[i] in closed_brackets :
+            # check the current element and last element if they both forms a pair then we have to pop the element
+            if isPair(stack[-1],A[i] or len(stack)!=0):
+                stack.pop()
+            else:
+                # else return False
+                return False
+    return True
+                
+A="{[()({+5})]}"
+if Balanced(A):
+    print("Paranthesis is balanced")
+else:
+    print('Paranthesis is not Balanced')
+
+    
+# Alternate Solution
+open_list = ["[","{","("]
+close_list = ["]","}",")"]
+def check(myStr):
+    stack = []
+    for i in myStr:
+        if i in open_list:
+            stack.append(i)
+        elif i in close_list:
+            pos = close_list.index(i)
+            print(pos)
+            if ((len(stack) > 0) and
+                (open_list[pos] == stack[len(stack)-1])):
+                stack.pop()
+            else:
+                return "Unbalanced"
+    if len(stack) == 0:
+        return "Balanced"
+    else:
+        return "Unbalanced"
+  
+  
+# Driver code
+string = "{[]{()}}"
+print(string,"-", check(string))
+  
+#string = "[{}{})(]"
+#print(string,"-", check(string))
+  
+#string = "((()"
+#print(string,"-",check(string))
